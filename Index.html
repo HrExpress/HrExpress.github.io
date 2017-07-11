@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VR</title>
+	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="/Content/bootstrap.css" rel="stylesheet" />
+	<style>
+		.body-content {
+			padding: 50px 8px 16px 8px;
+		}
+	</style>
+</head>
+<body>
+	<div id="broot">
+		<!-- header (master) -->
+
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/Index.html">VR</a>
+					<span data-bind="if: app.ApiCalls()"><small class="text-muted" data-bind="text: app.ApiCalls()"></small></span>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right" data-bind="with: Person">
+						<!-- ko if: ResumeCount == 0 -->
+						<li><a href="/my/Resume.html?create">Создать резюме</a></li>
+						<!-- /ko-->
+						<!-- ko if: ResumeCount > 0 -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Резюме <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/my/Resumes.html">Мои резюме <span data-bind="text: ResumeCount" class="text-muted"></span></a></li>
+								<li><a href="/my/Resume.html?create">Добавить резюме</a></li>
+							</ul>
+						</li>
+						<!-- /ko -->
+						<!-- ko if: VacancyCount == 0 -->
+						<li><a href="/my/Vacancy.html?create">Создать вакансию</a></li>
+						<!-- /ko-->
+						<!-- ko if: VacancyCount > 0 -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вакансии <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/my/Vacancies.html">Мои вакансии <span data-bind="text: VacancyCount" class="text-muted"></span></a></li>
+								<li><a href="/my/Vacancy.html?create">Добавить вакансию</a></li>
+							</ul>
+						</li>
+						<!-- /ko-->
+						<!-- ko if: CompanyCount == 0 -->
+						<li><a href="/my/Company.html?create">Создать компанию</a></li>
+						<!-- /ko-->
+						<!-- ko if: CompanyCount > 0 -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Компании <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/my/Companies.html">Мои компании <span data-bind="text: CompanyCount" class="text-muted"></span></a></li>
+								<li><a href="/my/Company.html?create">Добавить компанию</a></li>
+							</ul>
+						</li>
+						<!-- /ko-->
+						<li><a href="/my/Offers.html">Отклики и предложения <span data-bind="visible: OfferInsistentCount, text: OfferInsistentCount" class="badge"></span></a></li>
+
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span data-bind="text: Name"></span> <span data-bind="text: Family"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Настройки</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#" data-bind="click: $parent.Logout">Выйти</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Москва</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- header -->
+
+		<div class="container body-content">
+			<br />
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-7">
+					<div class="input-group input-group-lg">
+						<input type="text" class="form-control" placeholder="Введите ключевые слова...">
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="button">Найти вакансию!</button>
+						</span>
+					</div>
+				</div>
+				<div class="col-md-2"><a href="#" class="btn btn-link">Искать кандидатов</a></div>
+				<div class="col-md-2"><a href="#" class="btn btn-link"><span class="glyphicon glyphicon-filter"></span> Дополнительные <br /> параметры поиска</a></div>
+			</div>
+
+			<!-- footer (master) -->
+
+			<footer>
+				<hr />
+				<span>&copy; 2017</span>
+				<a href="/About.html" class="text-muted">О сайте</a>
+				<a href="/Feedback.html" class="text-muted">Сообщить о проблеме</a>
+			</footer>
+
+			<!-- footer -->
+
+		</div>
+	</div>
+
+	<script src="/Scripts/jquery-3.1.1.js" type="text/javascript"></script>
+	<script src="/Scripts/bootstrap.js" type="text/javascript"></script>
+	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
+	<script src="/Scripts/knockout.mapping-latest.js" type="text/javascript"></script>
+	<script src="/Scripts/markup.js" type="text/javascript"></script>
+	<script src="/Scripts/app.js" type="text/javascript"></script>
+	<script src="/Scripts/Common.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(function () {
+			app.ViewModel = new CommonViewModel();
+			//app.ViewModel.PageViewModel = new PageViewModel();
+			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
+			app.ViewModel.Init();
+		});
+	</script>
+
+</body>
+</html>
