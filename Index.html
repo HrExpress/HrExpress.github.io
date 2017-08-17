@@ -1,134 +1,136 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>VR</title>
-	<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	<link href="/Content/bootstrap.css" rel="stylesheet" />
-	<style>
-		.body-content {
-			padding: 50px 8px 16px 8px;
-		}
-	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>HR Express 10</title>
+	<meta property="og:url" content="http://project346022.tilda.ws" />
+	<meta property="og:title" content="HR Express 10" />
+	<meta property="og:description" content="A landing page of a job service" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://static.tildacdn.com/tild3266-6634-4364-a333-323864363030/backgr_white.png" />
+	<meta property="fb:app_id" content="257953674358265" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta http-equiv="x-dns-prefetch-control" content="on">
+	<link rel="dns-prefetch" href="//tilda.ws">
+	<link rel="dns-prefetch" href="//static.tildacdn.com">
+	<meta name="description" content="A landing page of a job service" />
+	<link rel="canonical" href="http://project346022.tilda.ws/">
+	<link rel="shortcut icon" href="//static.tildacdn.com/img/tildafavicon.ico" type="image/x-icon" /><!-- Assets -->
+	<link rel="stylesheet" href="//static.tildacdn.com/css/tilda-grid-3.0.min.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="//tilda.ws/project346022/tilda-blocks-2.12.css?t=1502956243" type="text/css" media="all" />
+	<script src="//static.tildacdn.com/js/jquery-1.10.2.min.js"></script>
+	<script src="//static.tildacdn.com/js/tilda-scripts-2.8.min.js"></script>
+	<script src="//tilda.ws/project346022/tilda-blocks-2.7.js?t=1502956243"></script>
+	<script src="//static.tildacdn.com/js/lazyload-1.3.min.js"></script>
 </head>
-<body>
-	<div id="broot">
-		<!-- header (master) -->
-
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="/Index.html">VR</a>
-					<span data-bind="if: app.ApiCalls()"><small class="text-muted" data-bind="text: app.ApiCalls()"></small></span>
-				</div>
-				<div class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right" data-bind="with: Person">
-						<!-- ko if: ResumeCount == 0 -->
-						<li><a href="/my/Resume.html?create">Создать резюме</a></li>
-						<!-- /ko-->
-						<!-- ko if: ResumeCount > 0 -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Резюме <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/my/Resumes.html">Мои резюме <span data-bind="text: ResumeCount" class="text-muted"></span></a></li>
-								<li><a href="/my/Resume.html?create">Добавить резюме</a></li>
-							</ul>
-						</li>
-						<!-- /ko -->
-						<!-- ko if: VacancyCount == 0 -->
-						<li><a href="/my/Vacancy.html?create">Создать вакансию</a></li>
-						<!-- /ko-->
-						<!-- ko if: VacancyCount > 0 -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Вакансии <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/my/Vacancies.html">Мои вакансии <span data-bind="text: VacancyCount" class="text-muted"></span></a></li>
-								<li><a href="/my/Vacancy.html?create">Добавить вакансию</a></li>
-							</ul>
-						</li>
-						<!-- /ko-->
-						<!-- ko if: CompanyCount == 0 -->
-						<li><a href="/my/Company.html?create">Создать компанию</a></li>
-						<!-- /ko-->
-						<!-- ko if: CompanyCount > 0 -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Компании <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="/my/Companies.html">Мои компании <span data-bind="text: CompanyCount" class="text-muted"></span></a></li>
-								<li><a href="/my/Company.html?create">Добавить компанию</a></li>
-							</ul>
-						</li>
-						<!-- /ko-->
-						<li><a href="/my/Offers.html">Отклики и предложения <span data-bind="visible: OfferInsistentCount, text: OfferInsistentCount" class="badge"></span></a></li>
-
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span data-bind="text: Name"></span> <span data-bind="text: Family"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Настройки</a></li>
-								<li role="separator" class="divider"></li>
-								<li><a href="#" data-bind="click: $parent.Logout">Выйти</a></li>
-							</ul>
-						</li>
-						<li><a href="#">Москва</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<!-- header -->
-
-		<div class="container body-content">
-			<br />
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-7">
-					<div class="input-group input-group-lg">
-						<input type="text" class="form-control" placeholder="Введите ключевые слова...">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" type="button">Найти вакансию!</button>
-						</span>
+<body class="t-body" style="margin:0;">
+	<!--allrecords--><div id="allrecords" class="t-records" data-hook="blocks-collection-content-node" data-tilda-project-id="346022" data-tilda-page-id="1426558" data-tilda-formskey="57d18a56ee5ea208f7752493d65b16fd">
+		<div id="rec29413988" class="r" style=" " data-animationappear="off" data-record-type="448">
+			<!-- t448 --><!-- cover --><div class="t448" data-crop-image="on"><div class="t-cover" id="recorddiv29413988" bgimgfield="img" style="height:100vh; background-image:url('https://static.tildacdn.com/tild3266-6634-4364-a333-323864363030/-/resize/20x/backgr_white.png');"><div class="t-cover__carrier" id="coverCarry29413988" data-content-cover-id="29413988" data-content-cover-bg="https://static.tildacdn.com/tild3266-6634-4364-a333-323864363030/backgr_white.png" data-content-cover-height="100vh" data-content-cover-parallax="" style="background-image:url('');height:100vh;background-attachment:scroll; "></div> <div class="t-cover__filter" style="height:100vh;background-image: -moz-linear-gradient(top, rgba(0,0,0,0.0), rgba(20,20,20,0.0));background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.0), rgba(20,20,20,0.0));background-image: -o-linear-gradient(top, rgba(0,0,0,0.0), rgba(20,20,20,0.0));background-image: -ms-linear-gradient(top, rgba(0,0,0,0.0), rgba(20,20,20,0.0));background-image: linear-gradient(top, rgba(0,0,0,0.0), rgba(20,20,20,0.0));filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fe000000', endColorstr='#fe141414');"></div> <div class="t-container"> <div class="t-col t-col_12"> <div class="t-cover__wrapper t448-cover__wrapper t-valign_middle" style="height: 100vh;"> <div class="t448__wrapper t-width t-width_7" data-hook-content="covercontent"> <div class="t448__title t-title t-title_sm " style="color:#000000;font-size:52px;padding-top:70px;" field="title">HR Express 10</div> <div class="t448__descr t-descr t-descr_xs " style="color:#878787;font-size:22px;" field="descr">Проект онлайн сервиса для поиска работы и работников, построенный по принципу практичной непритязательности</div> </div> <img class="t448__screenshot t-img " imgfield="img2" src="https://static.tildacdn.com/tild3162-6436-4265-b161-643861303263/2Artboard1copy5.png" style="max-width: 1040px;"> </div> </div> </div> </div> </div>
+			<script type="text/javascript">
+				$(document).ready(function () {
+					t448_setHeight('29413988');
+				});
+				$(window).load(function () {
+					t448_setHeight('29413988');
+				});
+				$(window).resize(function () {
+					t448_setHeight('29413988');
+				});</script>
+		</div><div id="rec29413990" class="r" style=" " data-record-type="215">
+			<a name="services" style="font-size:0;"></a>
+		</div><div id="rec29413992" class="r" style="padding-top:120px;padding-bottom:120px;background-color:#f5f5f5; " data-record-type="490" data-bg-color="#f5f5f5">
+			<!-- t490 --><div class="t490">
+				<div class="t-section__container t-container">
+					<div class="t-col t-col_12">
+						<div class="t-section__topwrapper t-align_center">
+							<div class="t-section__title t-title t-title_xs " field="btitle">
+								<div style="font-size:24px;" data-customstyle="yes">
+									<span style="font-weight: 100;">Идеология проекта заключается в минимализме и простоте,<br /> как в способе удовлетворения базовых нужд пользователей в сфере поиска работы/работников. <br />При этом скромность интерфейса и функционала обеспечивает достаточное удобство и возможности, не деградируя до убожества и примитивизма.<br /><br /> Из этих принципов следует:</span><strong><em data-redactor-tag="em"></em></strong>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-2"><a href="#" class="btn btn-link">Искать кандидатов</a></div>
-				<div class="col-md-2"><a href="#" class="btn btn-link"><span class="glyphicon glyphicon-filter"></span> Дополнительные <br /> параметры поиска</a></div>
+				</div><div class="t-container"> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/31343564-3037-4131-b732-366630643563/-/empty/2web_structure.svg" data-original="https://static.tildacdn.com/lib/tildaicon/31343564-3037-4131-b732-366630643563/2web_structure.svg" class="t490__img t-img" imgfield="li_img__1476968690512" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1476968690512"><span style="font-weight: 300;">1. Для разр<strong></strong><strong></strong>аботки и запуска используются стандартные компоненты, необходимый минимум</span><br /></div> </div> </a> </div> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/33393836-3863-4765-a536-663733393534/-/empty/12ft_kid.svg" data-original="https://static.tildacdn.com/lib/tildaicon/33393836-3863-4765-a536-663733393534/12ft_kid.svg" class="t490__img t-img" imgfield="li_img__1476968700508" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1476968700508"><span style="font-weight: 300;">2. Минимальный порог вхождения в проект для разработчиков</span></div> </div> </a> </div> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/61646565-6332-4531-b565-623361613265/-/empty/27as_engine.svg" data-original="https://static.tildacdn.com/lib/tildaicon/61646565-6332-4531-b565-623361613265/27as_engine.svg" class="t490__img t-img" imgfield="li_img__1476968722790" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1476968722790"><span style="font-weight: 300;">3. Минимальные технические требования для работы проекта</span></div> </div> </a> </div> <div class="t-clear t490__separator" style="margin-bottom:80px;"></div> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/63373837-3136-4165-b536-616132313631/-/empty/12ft_barbell.svg" data-original="https://static.tildacdn.com/lib/tildaicon/63373837-3136-4165-b536-616132313631/12ft_barbell.svg" class="t490__img t-img" imgfield="li_img__1487764083609" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1487764083609"><span style="font-weight: 300;">4. Способность выдерживать большие нагрузки</span></div> </div> </a> </div> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/38376235-6563-4137-b466-623966643135/-/empty/estimate.svg" data-original="https://static.tildacdn.com/lib/tildaicon/38376235-6563-4137-b466-623966643135/estimate.svg" class="t490__img t-img" imgfield="li_img__1487764085275" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1487764085275"><span style="font-weight: 300;">5. Приемлемая работа на любых клиентских устройствах</span></div> </div> </a> </div> <div class="t490__col t-col t-col_4 t-align_center t-item "> <a href="/" target=""> <img src="https://static.tildacdn.com/lib/tildaicon/65363761-3531-4532-b631-383638653364/-/empty/4wed_bride.svg" data-original="https://static.tildacdn.com/lib/tildaicon/65363761-3531-4532-b631-383638653364/4wed_bride.svg" class="t490__img t-img" imgfield="li_img__1487764087052" style="width:120px;" /> <div class="t490__wrappercenter "> <div class="t-name t-name_sm" style="" field="li_title__1487764087052"><span style="font-weight: 300;">6. Простота понимания и лёгкость использования даже для малоопытных пользователей</span></div> </div> </a> </div></div><div class="t-section__container t-container"><div class="t-col t-col_12"><div class="t-section__bottomwrapper t-clear t-align_center "><a href="" target="" class="t-btn " style="color:#0000ff;border:2px solid #0000ff;border-radius:30px; -moz-border-radius:30px; -webkit-border-radius:30px;"><table style="width:100%; height:100%;"><tr><td>Подробнее о реализации принципов</td></tr></table></a></div></div></div>
 			</div>
+		</div><div id="rec29414010" class="r" style=" " data-record-type="215"><a name="faq" style="font-size:0;"></a></div>
+		<div id="rec29414012" class="r" style="padding-top:120px;padding-bottom:60px; " data-record-type="255">
+			<!-- T225 --><div class="t225">
+				<div class="t-container t-align_center">
+					<div class="t-col t-col_8 t-prefix_2"> <div class="t225__title t-title t-title_md" field="title" style="font-size:42px;">А именно:</div> </div>
 
-			<!-- footer (master) -->
-
-			<footer>
-				<hr />
-				<span>&copy; 2017</span>
-				<a href="/About.html" class="text-muted">О сайте</a>
-				<a href="/Feedback.html" class="text-muted">Сообщить о проблеме</a>
-			</footer>
-
-			<!-- footer -->
-
-		</div>
-	</div>
-
-	<script src="/Scripts/jquery-3.1.1.js" type="text/javascript"></script>
-	<script src="/Scripts/bootstrap.js" type="text/javascript"></script>
-	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
-	<script src="/Scripts/knockout.mapping-latest.js" type="text/javascript"></script>
-	<script src="/Scripts/markup.js" type="text/javascript"></script>
-	<script src="/Scripts/app.js" type="text/javascript"></script>
-	<script src="/Scripts/Common.js" type="text/javascript"></script>
-
-	<script type="text/javascript">
-		$(function () {
-			app.ViewModel = new CommonViewModel();
-			//app.ViewModel.PageViewModel = new PageViewModel();
-			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
-			app.ViewModel.Init();
-		});
-	</script>
-
+				</div>
+			</div>
+		</div><div id="rec29414014" class="r" style="padding-top:0px;padding-bottom:120px; " data-animationappear="off" data-record-type="664">
+			<!-- T664--><div class="t664">
+				<div class="t-container">
+					<div class="t664__col t-col t-col_10 t-prefix_1">
+						<div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question">
+							<div class="t664__question">
+								<div class="t664__question-name t-text t-text_sm" field="li_title__1480611048442" style=" " itemprop="name">Принцип</div>
+								<div class="t664__question-text t-text t-text_sm" field="li_text__1480611048442" style="" itemprop="text">
+									<strong>Для разработки и запуска используются стандартные компоненты, необходимый минимум</strong>
+								</div>
+							</div> <div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer">
+								<div class="t664__question-text t-text t-text_sm" field="li_text2__1480611048442" style=" " itemprop="text">
+									Это реализуется с помощью базовых широкораспространенных технологий и инструментов и архитектуры <br />
+									<br /> Клиентский сайт: html, bootstrap, jquery, knockout. <br /><br /> Api: asp.net web api, linq2db хостинг IIS и Ms Sql Server. Сборка и публикация простым копированием. Все данные в одной бд, технические логи в одной папке. <br /><br />
+								</div>
+							</div>
+						</div>
+					</div> <div class="t664__col t-col t-col_10 t-prefix_1">
+						<div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question">
+							<div class="t664__question">
+								<div class="t664__question-name t-text t-text_sm" field="li_title__1480611044356" style=" " itemprop="name">Принцип</div>
+								<div class="t664__question-text t-text t-text_sm" field="li_text__1480611044356" style="" itemprop="text"><strong>Минимальный порог вхождения в проект для разработчиков</strong></div>
+							</div> <div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer">
+								<div class="t664__question-text t-text t-text_sm" field="li_text2__1480611044356" style=" " itemprop="text"> C# : linq2db, webapi. <br />Front-end : knockout, bootstrap, jquery. Ui/ux : bootstrap. <br />Стэк широко распространен и изучен разработчиками. <br /><br /> <br /></div>
+							</div>
+						</div>
+					</div> <div class="t664__col t-col t-col_10 t-prefix_1">
+						<div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question">
+							<div class="t664__question">
+								<div class="t664__question-name t-text t-text_sm" field="li_title__1496336105225" style=" " itemprop="name">Принцип</div>
+								<div class="t664__question-text t-text t-text_sm" field="li_text__1496336105225" style="" itemprop="text"><strong>Минимальные технические требования для работы проекта</strong></div>
+							</div> <div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer"> <div class="t664__question-text t-text t-text_sm" field="li_text2__1496336105225" style=" " itemprop="text">Любой хостинг статических файлов для клиентского сайта. IIS с mvc для api, sql server для данных.</div> </div>
+						</div>
+					</div>
+					<div class="t664__col t-col t-col_10 t-prefix_1">
+						<div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question">
+							<div class="t664__question"> <div class="t664__question-name t-text t-text_sm" field="li_title__1502954588038" style=" " itemprop="name">Принцип</div> <div class="t664__question-text t-text t-text_sm" field="li_text__1502954588038" style="" itemprop="text"><strong>Способность выдерживать большие нагрузки</strong><strong></strong></div> </div>
+							<div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer"> <div class="t664__question-text t-text t-text_sm" field="li_text2__1502954588038" style=" " itemprop="text">Отсутствие северной логики на хостинге сайта позволяет использовать любой вебсервер, работа на статические файлы не напрягает. Апи имеет нормальную нагрузку. Бд хранит минимальное набор данных, поэтому должно справляться хорошо.</div> </div>
+						</div>
+					</div> <div class="t664__col t-col t-col_10 t-prefix_1"> <div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question"> <div class="t664__question"> <div class="t664__question-name t-text t-text_sm" field="li_title__1502954623262" style=" " itemprop="name">Принцип</div> <div class="t664__question-text t-text t-text_sm" field="li_text__1502954623262" style="" itemprop="text"><strong>Приемлемая работа на любых клиентских устройствах</strong></div> </div> <div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer"> <div class="t664__question-text t-text t-text_sm" field="li_text2__1502954623262" style=" " itemprop="text">Для ui используется bootstrap, который рассчитан на широкий диапазон браузеров, не используются дополнительные свистелки и эффекты. Основные пользователи с компьютера, и смартфоны</div> </div> </div> </div> <div class="t664__col t-col t-col_10 t-prefix_1"> <div class="t664__wrapper" style=" border: 1px solid #0000ff;" itemscope itemtype="http://schema.org/Question"> <div class="t664__question"> <div class="t664__question-name t-text t-text_sm" field="li_title__1502954654993" style=" " itemprop="name">Принцип</div> <div class="t664__question-text t-text t-text_sm" field="li_text__1502954654993" style="" itemprop="text"><strong>Простота понимания и лёгкость использования даже для малоопытных пользователей</strong><strong></strong></div> </div> <div class="t664__answer" itemprop="acceptedAnswer" itemscope itemtype="http://schema.org/Answer"> <div class="t664__question-text t-text t-text_sm" field="li_text2__1502954654993" style=" " itemprop="text">Пользователи вводят только основную, минимально необходимую информацию, это легче для понимания и пробуждения. По мере развития проекта данные можно будет расширять за счёт автоматических механизмов и ненавязчивых уточняющих вопросов пользователю например</div> </div> </div> </div>
+				</div>
+			</div>
+		</div><div id="rec29413996" class="r" style="padding-top:120px;padding-bottom:120px; " data-record-type="565">
+			<!-- T565 --><div class="t565">
+				<div class="t-section__container t-container"><div class="t-col t-col_12"><div class="t-section__topwrapper t-align_center"><div class="t-section__title t-title t-title_xs " field="btitle">Roadmap</div></div></div></div> <div class="t-container t565__container">
+					<div class="t565__item">
+						<div class="t-width t-width_8 t565__mainblock">
+							<div class="t565__col">
+								<div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">1</div> </div> </div> <div class="t565__block">
+									<div class="t565__title t-name t-name_lg" field="li_title__1479137044697" style="">Реализация локального прототипа</div>
+									<div class="t565__descr t-text t-text_xs" field="li_descr__1479137044697" style="">Proof-of-concept сборка каркаса проекта с частью интерфейсов, которые могут быть показаны экспертам</div>
+								</div>
+							</div>
+						</div>
+					</div> <div class="t565__item"> <div class="t-width t-width_8 t565__mainblock"> <div class="t565__col t565__flipped"> <div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">2</div> </div> </div> <div class="t565__block-flipped"> <div class="t565__title t-name t-name_lg" field="li_title__1479137356907" style="">Развертывание прототипа</div> <div class="t565__descr t-text t-text_xs" field="li_descr__1479137356907" style="">Публикация в сети интернет, привязка к реальной БД<br /></div> </div> </div> </div> </div> <div class="t565__item"> <div class="t-width t-width_8 t565__mainblock"> <div class="t565__col"> <div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">3</div> </div> </div> <div class="t565__block"> <div class="t565__title t-name t-name_lg" field="li_title__1479137790652" style="">Придумывание и реализация UX/UI</div> <div class="t565__descr t-text t-text_xs" field="li_descr__1479137790652" style="">Привлечение дизайнера для разработки стиля и интерфейса, применение этого к проекту<br /></div> </div> </div> </div> </div> <div class="t565__item">
+						<div class="t-width t-width_8 t565__mainblock">
+							<div class="t565__col t565__flipped">
+								<div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">4</div> </div> </div> <div class="t565__block-flipped">
+									<div class="t565__title t-name t-name_lg" field="li_title__1479137793455" style="">Привлечение экспертов</div>
+									<div class="t565__descr t-text t-text_xs" field="li_descr__1479137793455" style="">Тестирование проекта реальными пользователями, сбор требований</div>
+								</div>
+							</div>
+						</div>
+					</div> <div class="t565__item"> <div class="t-width t-width_8 t565__mainblock"> <div class="t565__col"> <div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">5</div> </div> </div> <div class="t565__block"> <div class="t565__title t-name t-name_lg" field="li_title__1502954910897" style="">Бета-версия</div> <div class="t565__descr t-text t-text_xs" field="li_descr__1502954910897" style="">Реализация функционала, недостающего для полноценного запуска, запуск in-the-wild</div> </div> </div> </div> </div> <div class="t565__item"> <div class="t-width t-width_8 t565__mainblock"> <div class="t565__col t565__flipped"> <div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">6</div> </div> </div> <div class="t565__block-flipped"> <div class="t565__title t-name t-name_lg" field="li_title__1502955407216" style="">Доработка</div> <div class="t565__descr t-text t-text_xs" field="li_descr__1502955407216" style="">Устранение шероховатостей, сбор статистики</div> </div> </div> </div> </div> <div class="t565__item"> <div class="t-width t-width_8 t565__mainblock"> <div class="t565__col"> <div class="t565__linewrapper"> <div class="t565__line" style="width: 2px;background-color:#8f8f8f;"></div> <div class="t565__circle" style=" border-width: 2px; border-color: #8f8f8f; background: #ffffff;"> <div class="t565__number t-name t-name_md" style="color: #8f8f8f;">7</div> </div> </div> <div class="t565__block"> <div class="t565__title t-name t-name_lg" field="li_title__1502955535407" style="">HR Express 10.2</div> <div class="t565__descr t-text t-text_xs" field="li_descr__1502955535407" style="">Добавление интеллектуальных функций, аналитики</div> </div> </div> </div> </div>
+				</div>
+			</div>
+		</div><div id="rec29414016" class="r" style=" " data-record-type="215"><a name="contacts" style="font-size:0;"></a></div><div id="rec29414004" class="r" style="padding-top:60px;padding-bottom:120px;background-color:#f5f5f5; " data-record-type="65" data-bg-color="#f5f5f5"><!-- T056 --><div class="t056"> <div class="t-container t-align_center"> <div class="t-col t-col_8 t-prefix_2"> <div class="t056__title t-name t-name_xl" field="title" style="">Если вы хотите помочь или поучаствовать в проекте, <a href="mailto:mailto:shulapovmax@mail.ru" style="font-weight: 300; font-size: 24px;">пишите мне</a>. </div> </div> </div></div></div>
+	</div><!--/allrecords--><!-- Tilda copyright. Don't remove this line --><div class="t-tildalabel " id="tildacopy" data-tilda-sign="346022#1426558"><a href="https://tilda.cc/?upm=346022" class="t-tildalabel__link"><div class="t-tildalabel__wrapper"><div class="t-tildalabel__txtleft">Made on </div><div class="t-tildalabel__wrapimg"><img src="https://static.tildacdn.com/img/tildacopy.png" class="t-tildalabel__img"></div><div class="t-tildalabel__txtright">Tilda</div></div></a></div><!-- Stat -->
+	<script> (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-56589716-2', 'auto', { 'name': 'tilda' }); ga('tilda.send', 'pageview'); if (!window.mainTracker) { window.mainTracker = 'tilda'; }</script>
 </body>
 </html>
