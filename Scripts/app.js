@@ -117,11 +117,11 @@ app.ViewModel = {
 	},
 
 	Init: function () {
-		if (window.location.pathname === "/login.html" && app.IsAuthenticated())
+		if (window.location.pathname === "/Login.html" && app.IsAuthenticated())
 			window.location = "/";
 
-		if (window.location.pathname !== "/login.html" && window.location.pathname !== "/about.html" && !app.IsAuthenticated())
-			window.location = "/login.html";
+		if (window.location.pathname !== "/Login.html" && window.location.pathname !== "/About.html" && !app.IsAuthenticated())
+			window.location = "/Login.html";
 
 		app.ViewModel.LoadUserInfo();
 		if (app.ViewModel.PageViewModel != null)
