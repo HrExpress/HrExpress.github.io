@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Вак1анс11ия</title>
+	<link href="/HrExpress.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="/Content/Normal.css" rel="stylesheet" />
+</head>
+<body id="broot">
+
+	<!-- header -->
+
+	<nav>
+		<div class="logo">
+			<a href="/">Ex5  press</a>
+		</div>
+		<div class="hr"></div>
+
+		<ul>
+			<li><a href="/Companies.html">Компании</a></li>
+			<li><a href="/Requests.html">Запросы</a></li>
+			<li><a href="/Vacancies.html">Вакансии</a></li>
+			<li><a href="/Candidates.html">Кандидаты</a></li>
+		</ul>
+		<div class="hr"></div>
+		<ul>
+			<li data-bind="with: User"><a data-bind="text: Name, attr:{href:'/User.html?'+ID}"></a></li>
+			<li><a id="logout" href="#" data-bind="click: Logout">Выйти</a></li>
+		</ul>
+
+	</nav>
+
+	<!-- header -->
+
+	<main data-bind="with: PageViewModel">
+		<header>
+			<h1 class="navbar-brand" href="#">Вак1анс11ия</h1>
+			<button data-bind="click:Save, visible: IsDirty">Сохранить</button>
+			<button class="danger" data-bind="click:Delete, visible: !IsCreateMode()">Удалить</button>
+		</header>
+
+		<div class="content">
+			<div data-bind="with: Vacancy">
+				<div id="vacancyTabs">
+					<ul class="tabs-header">
+						<li class="active" data-target="home">Название</li>
+						<li data-target="profile">Описание</li>
+						<li data-target="workgroup" data-bind="visible: !$parent.IsCreateMode()">Проектная группа</li>
+						<li data-target="documents" data-bind="visible: !$parent.IsCreateMode()">Документы</li>
+						<li data-target="files" data-bind="visible: !$parent.IsCreateMode()">Файлы</li>
+					</ul>
+
+					<div class="tabs-container">
+						<section id="home" class="tab-pane active">
+							<div>
+								<form class="container">
+									<div class="row">
+										<span class="col-2 control-label">Название</span>
+										<div class="col-10">
+											<input type="text" data-bind="textInput: Name" name="VacancyName">
+										</div>
+									</div>
+									<div class="row">
+										<span class="col-2 control-label">Заказчик</span>
+										<div class="col-4">
+											<a href="#" data-bind="text: CompanyName, attr:{href:'/Company.html?'+CompanyId()}" class="control" target="_blank"></a>
+										</div>
+
+										<button class="col-1 lite" data-bind="click: $parent.SelectCompany">изменить</button>
+
+										<span class="col-1 control-label">Код</span>
+										<div class="col-4">
+											<input type="text" data-bind="textInput: Code" name="Code">
+										</div>
+									</div>
+
+									<div class="row">
+										<span class="col-2 control-label">З/п</span>
+										<div class="col-4">
+											<input type="text" data-bind="textInput: Salary" name="Salary">
+										</div>
+
+										<span class="col-2 control-label">Кол.человек</span>
+										<div class="col-4">
+											<input type="text" data-bind="textInput: AmountPerson" name="AmountPerson">
+										</div>
+									</div>
+
+									<div class="row">
+										<span class="col-2 control-label">Статус</span>
+										<div class="col-4">
+											<select class="control" data-bind="value:Status, options: app.ViewModel.Options['VacancyStatus'], optionsValue:'ID',  optionsText: 'Display', valueAllowUnset: true" name="Status"></select>
+										</div>
+
+										<span class="col-2 control-label">Приоритет</span>
+										<div class="col-4">
+											<input type="text" data-bind="textInput: Priority" name="Priority">
+										</div>
+									</div>
+
+									<div class="row">
+										<span class="col-2 control-label">Адрес</span>
+										<div class="col-10">
+											<input type="text" data-bind="textInput: Address" name="Address">
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+
+						<section id="profile" class="tab-pane">
+							<div>
+								<form class="container">
+									<div class="row">
+										<span class="col-2 control-label">Требования</span>
+										<div class="col-10">
+											<textarea type="text" class="control" data-bind="textInput: Requirements" name="Requirements" rows="4"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<span class="col-2 control-label">Обязанности</span>
+										<div class="col-10">
+											<textarea type="text" class="control" data-bind="textInput: Responsibility" name="Responsibility" rows="4"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<span class="col-2 control-label">Условия работы</span>
+										<div class="col-10">
+											<textarea type="text" class="control" data-bind="textInput: WorkTerms" name="WorkTerms" rows="5"></textarea>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+
+						<section id="workgroup" class="tab-pane">
+							<ul class="inner-toolbar">
+								<li><button data-bind="click: $parent.AddWorkgroup">Добавить пользователя</button></li>
+							</ul>
+							<table>
+								<thead>
+									<tr>
+										<th class="col-3">Пользователь</th>
+										<th class="col-2">Роль</th>
+										<th class="col-1">Участие</th>
+										<th class="col-6"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- ko foreach: $parent.Workgroup -->
+									<tr>
+										<td><a data-bind="text: $parents[1].GetDisplay('User', UserId), attr: {href: '/User.html?' + UserId()}"></a></td>
+										<td data-bind="text: $parents[1].GetDisplay('Role', Role)"></td>
+										<td data-bind="text: Percent"></td>
+										<td><button data-bind="click: $parents[1].EditWorkgroup" class="lite">изменить</button> <button data-bind="click: $parents[1].DeleteWorkgroup" class="lite">удалить</button></td>
+									</tr>
+									<!-- /ko -->
+
+								</tbody>
+							</table>
+							<!-- ko if: $parent.Workgroup().length == 0 -->
+							<p class="text-danger text-center">Тут пусто.</p>
+							<!-- /ko -->
+							<div class="alert alert-warning" style="display:none">Суммарный процент участия не равен 100</div>
+						</section>
+
+						<section id="documents" class="tab-pane">это пока не реализовано</section>
+
+						<section id="files" class="tab-pane">
+							<table>
+								<thead>
+									<tr>
+										<th class="col-3">Название</th>
+										<th class="col-2">Размер</th>
+										<th class="col-3">Загружено</th>
+										<th class="col-3"></th>
+										<th class="col-1"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- ko foreach: $parent.Files -->
+									<tr>
+										<td><a href="#" data-bind="text: Name, attr: { href:'/File.html?' + ID }"></a></td>
+										<td><span data-bind="text: Size"></span></td>
+										<td><span data-bind="text: Description"></span></td>
+										<td></td>
+										<td><button class="lite">удалить</button></td>
+									</tr>
+									<!-- /ko -->
+								</tbody>
+							</table>
+							<!-- ko if: $parent.Files().length == 0 -->
+							<p class="text-danger text-center">Тут пусто.</p>
+							<!-- /ko -->
+
+							<div class="row">
+								<span class="col-2 control-label">Добавить файл</span>
+								<div class="col-4">
+									<input type="file" class="control" id="selectedFile" />
+								</div>
+								<div class="col-2">
+									<button data-bind="click: $parent.UploadFile">Загрузить</button>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<br />
+			<br />
+
+			<section id="journalContainer" class="card" data-bind="visible: !IsCreateMode()">
+				<h3>
+					Журнал
+					<button class="pull-right" data-bind="click: ShowJournalForm, visible: !IsJournalFormShown()">добавить сообщение</button>
+				</h3>
+				<div class="container" style="display: none" data-bind="visible: IsJournalFormShown">
+					<div class="row">
+						<div class="col-10">
+							<textarea placeholder="введите текст сообщения..." rows="4" data-bind="textInput: JournalContent"></textarea>
+						</div>
+						<div class="col-2">
+							<button data-bind="click: SubmitJournal">Отправить</button>
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<ul class="group">
+						<!-- ko foreach: Journal -->
+						<li>
+							<span class="muted" data-bind="text: app.FormatDate(Date, true)"></span>
+							<span data-bind="text: UserName"></span>
+							<span class="muted">написал(а)</span>
+							<span data-bind="text: Content"></span>
+						</li>
+						<!-- /ko -->
+					</ul>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<!-- footer -->
+
+	<footer>
+		&copy; 2018
+		<!--<div data-bind="text: ko.toJSON(app.ViewModel)"></div>-->
+	</footer>
+
+	<!-- footer -->
+
+	<section>
+		<!-- select company modalo -->
+		<div class="modalo" data-bind="allowBindings: false">
+			<section id="select-company-modalo" style="display:none">
+				<header>
+					<h3>Выбор компании</h3>
+				</header>
+				<div class="content">
+					<form class="container">
+						<div class="row">
+							<div class="col-10">
+								<select class="control" data-bind="value:CurrentItem, options: Companies, optionsValue:'ID', optionsText: 'Display'"></select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<footer>
+					<button data-bind="click: Close" class="aux">Отмена</button>
+					<button data-bind="click: Done">Ok</button>
+				</footer>
+			</section>
+		</div>
+
+		<!-- edit workgroup entry modal -->
+		<div class="modalo" data-bind="allowBindings: false">
+			<section id="edit-workgroup-modalo" style="display:none">
+				<header>
+					<h3>Участник группы</h3>
+				</header>
+				<div class="content">
+					<form class="container" data-bind="with: CurrentItem">
+						<div class="row">
+							<span class="col-4 control-label">Пользователь</span>
+							<div class="col-8">
+								<select data-bind="value:UserId, options: $parent.Users, optionsValue:'ID',  optionsText: 'Display', optionsCaption:''"></select>
+							</div>
+						</div>
+						<div class="row">
+							<span class="col-4 control-label">или его код</span>
+							<div class="col-8">
+								<input type="text" data-bind="textInput: $parent.UserCode">
+							</div>
+						</div>
+						<div class="row">
+							<span class="col-4 control-label">Роль</span>
+							<div class="col-8">
+								<select data-bind="value:Role, options: $parent.Roles, optionsValue:'ID', optionsText: 'Display'"></select>
+							</div>
+						</div>
+						<div class="row">
+							<span class="col-4 control-label">Процент участия</span>
+							<div class="col-8">
+								<input type="text" data-bind="textInput: Percent" name="Address">
+							</div>
+						</div>
+						<p id="workgroupErrorMessage" class="text-danger text-center" style="padding-top: 16px; display:none;"></p>
+					</form>
+				</div>
+				<footer>
+					<button data-bind="click: Close" class="aux">Отмена</button>
+					<button data-bind="click: Done">Ok</button>
+				</footer>
+			</section>
+		</div>
+
+		<!-- confirm delete workgroup modal -->
+		<div class="modalo" data-bind="allowBindings: false">
+			<section id="confirmDeleteWorkgroupModalo" style="display:none">
+				<header>
+					<h3>Подверждение действия</h3>
+				</header>
+				<div class="content">
+					Эта запись будет удалена.
+					<p class="text-muted">Пользователь может потерять доступ к этой компании и её вакансиям.</p>
+				</div>
+				<footer>
+					<button data-bind="click: Close" class="aux">Отмена</button>
+					<button data-bind="click: Done" class="danger">Ok</button>
+				</footer>
+			</section>
+		</div>
+
+		<!-- confirm delete modalo -->
+		<div class="modalo" data-bind="allowBindings: false">
+			<section id="confirm-delete-vacancy-modalo" style="display:none">
+				<header>
+					<h4>Подверждение действия</h4>
+				</header>
+				<div class="content">
+					Эта вакансия - <strong data-bind="text: CurrentItem().Name"></strong> будет удалена.
+					<p class="text-danger">
+						Также будут удалены все связанные с ней данные:
+						<ul>
+							<li>X запросов</li>
+							<li>X событий</li>
+							<li>X документов</li>
+							<li>X файлов</li>
+							<li>Вся переписка по удаляемым карточкам</li>
+						</ul>
+					</p>
+				</div>
+				<footer>
+					<button data-bind="click: Close" class="aux">Отмена</button>
+					<button data-bind="click: Done" class="danger">Ok</button>
+				</footer>
+			</section>
+		</div>
+	</section>
+
+	<!-- scripts -->
+
+	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
+	<script src="/Scripts/app.js" type="text/javascript"></script>
+
+	<!-- scripts -->
+
+	<script src="/Scripts/knockout.mapping-latest.js" type="text/javascript"></script>
+	<script src="/Scripts/Vacancy.js" type="text/javascript"></script>
+
+	<!-- init -->
+
+	<script>
+		var init = function () {
+			app.ViewModel.PageViewModel = new PageViewModel();
+			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
+			app.ViewModel.Init();
+			test.Init();
+		};
+
+		if (document.readyState !== 'loading')
+			init();
+		else
+			document.addEventListener('DOMContentLoaded', init);
+	</script>
+
+	<!-- init -->
+
+</body>
+</html>

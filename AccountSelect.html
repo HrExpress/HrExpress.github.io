@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Выбор аккаунта</title>
+	<link href="/HrExpress.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="/Content/Compact.css" rel="stylesheet" />
+</head>
+<body id="broot">
+
+	<!--ko with: PageViewModel-->
+	<main>
+		<header>
+			<h1>Example</h1>
+			<p>Выбор текущего аккаунта для <span data-bind="with: User"><strong data-bind="text: Name"></strong></span></p>
+		</header>
+		<div class="content">
+			<!-- ko if: Accounts().length != 0 -->
+			<div class="col">
+				<ul class="control">
+					<!-- ko foreach: Accounts -->
+					<li data-bind="click: Select, css:{ 'selected': IsSelected }">
+						<h5 data-bind="text: Name"></h5>
+						<span class="muted"><span data-bind="text: VacancyCount"></span> вакансий</span>
+					</li>
+					<!-- /ko -->
+				</ul>
+			</div>
+			<!-- /ko -->
+			<!-- ko if: Accounts().length == 0 -->
+			<p class="col">Вы пока не участвуете ни в одном аккаунте. Чтобы начать работу <a data-bind="click: CreateAccount">создайте новый</a> или дайте возможность включить вас в существующий, указав код <span data-bind="with: User"><strong data-bind="text: ShareCode"></strong></span> </p>
+			<!-- /ko -->
+			<!-- ko if: Accounts().length != 0 -->
+			<p class="col">Также вы можете <a data-bind="click: CreateAccount">создать новый</a> или позволить включить вас в существующий, указав код <span data-bind="with: User"><strong data-bind="text: ShareCode"></strong></span> </p>
+			<!-- /ko -->
+			<div class="col padTop">
+				<button class="btn" data-bind="enable: IsAccountSelected()>0, click: Done">Готово</button>
+			</div>
+		</div>
+	</main>
+
+	<main id="create-account-modalo" style="display:none" data-bind="with: CreateAccountModalo">
+		<header>
+			<h1>Example</h1>
+			<h2>Создание нового аккаунта</h2>
+			<p>Аккаунт служит для организации работы компании или группы компаний.</p>
+		</header>
+		<div class="content">
+			<label>Название аккаунта</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Name" />
+			</div>
+			<div class="col muted">Допускаются буквы, цифры, тире и скобки</div>
+			<label>Описание аккаунта</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Description" />
+			</div>
+			<div class="col muted">Допускаются буквы, цифры, тире и скобки</div>
+
+			<div class="col padTop">
+				<button class="half" data-bind="click: Cancel">Отмена</button>
+				<button class="half" data-bind="click: Ok, enable: Validate()">Создать</button>
+			</div>
+		</div>
+	</main>
+
+	<!-- /ko -->
+	<!-- scripts -->
+
+	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
+	<script src="/Scripts/app.js" type="text/javascript"></script>
+
+	<!-- scripts -->
+
+	<script src="/Scripts/AccountSelect.js" type="text/javascript"></script>
+
+	<!-- init -->
+
+	<script>
+		var init = function () {
+			app.ViewModel.PageViewModel = new PageViewModel();
+			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
+			app.ViewModel.Init();
+			test.Init();
+		};
+
+		if (document.readyState !== 'loading')
+			init();
+		else
+			document.addEventListener('DOMContentLoaded', init);
+	</script>
+
+	<!-- init -->
+
+</body>
+</html>

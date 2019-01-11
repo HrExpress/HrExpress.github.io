@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Вход в HR Express</title>
+	<link href="/HrExpress.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="/Content/Compact.css" rel="stylesheet" />
+</head>
+<body id="broot">
+	<!--ko with: PageViewModel-->
+	<!-- ko if: Mode() == "Login" -->
+	<main>
+		<header>
+			<h1>Example</h1>
+		</header>
+		<div class="content">
+			<label>Email</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Email" />
+			</div>
+			<label>Пароль</label>
+			<div class="col">
+				<input type="password" data-bind="textInput: Pass, event:{keypress:EnterLogin}" />
+			</div>
+
+			<div class="col">
+				Также можно <a href="#" data-bind="click: SwitchToRegister">зарегистрироваться</a> или <a href="#" data-bind="click: SwitchToReset">вспомнить забытый пароль</a>
+			</div>
+			<div class="col padTop">
+				<button data-bind="click: Login">Войти</button>
+			</div>
+		</div>
+	</main>
+	<!-- /ko -->
+	<!-- ko if: Mode() == "Register" -->
+	<main>
+		<header>
+			<h1>Example</h1>
+		</header>
+		<div class="content">
+			<label>Email</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Email" />
+			</div>
+			<label>Пароль</label>
+			<div class="col">
+				<input type="password" data-bind="textInput: Pass, event:{keypress:EnterLogin}" />
+			</div>
+
+			<div class="col">
+				<input data-bind="checked: IsEulaReaded" type="checkbox" />
+				Я прочитал <a href="/About.html?rules" target="_blank">условия пользования сервисом</a> и согласен с ними
+			</div>
+			<div class="col padTop">
+				<button data-bind="click: Register" class="btn">Зарегистрироваться</button>
+			</div>
+			<div class="col padTop">
+				Уже зарегистрирован, <a data-bind="click: SwitchToLogin" href="#">войти</a>
+			</div>
+		</div>
+	</main>
+	<!-- /ko -->
+	<!-- ko if: Mode() == "Reset" -->
+	<main>
+		<header>
+			<h1>Example</h1>
+		</header>
+		<div class="content">
+			<label>Email</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Email" />
+			</div>
+			<div class="col padTop">
+				<button data-bind="click: ResetPass" class="btn">Сбросить пароль</button>
+			</div>
+			<div class="col padTop">
+				<a data-bind="click: SwitchToLogin" href="#" class="text-muted form-text">Кажется вспомнил</a>
+			</div>
+		</div>
+	</main>
+	<!-- /ko -->
+	<!-- ko if: Mode() == "SetPassword" -->
+	<main>
+		<header>
+			<h1>Example</h1>
+		</header>
+		<div class="content">
+			<label>Email</label>
+			<div class="col">
+				<input type="text" data-bind="textInput: Email" disabled/>
+			</div>
+			<label>Новый пароль</label>
+			<div class="col">
+				<input type="password" data-bind="textInput: Pass, event:{keypress:EnterLogin}" />
+			</div>
+			<div class="col padTop">
+				<button data-bind="click: SetPassword" class="btn">Установить</button>
+			</div>
+		</div>
+	</main>
+	<!-- /ko -->
+	<!-- /ko -->
+
+	<!-- scripts -->
+
+	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
+	<script src="/Scripts/app.js" type="text/javascript"></script>
+
+	<!-- scripts -->
+
+	<script src="/Scripts/Login.js" type="text/javascript"></script>
+
+	<!-- init -->
+
+	<script>
+		var init = function () {
+			app.ViewModel.PageViewModel = new PageViewModel();
+			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
+			app.ViewModel.Init();
+			test.Init();
+		};
+
+		if (document.readyState !== 'loading')
+			init();
+		else
+			document.addEventListener('DOMContentLoaded', init);
+	</script>
+
+	<!-- init -->
+</body>
+</html>

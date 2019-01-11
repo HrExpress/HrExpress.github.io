@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VR</title>
+	<link href="/HrExpress.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="/Content/bootstrap.css" rel="stylesheet" />
+	<style>
+		.body-content {
+			padding-top: 128px;
+		}
+	</style>
+</head>
+<body>
+	<div id="broot">
+
+		<!-- header -->
+
+	<nav>
+		<div class="logo">
+			<a href="/">Ex5  press</a>
+		</div>
+		<div class="hr"></div>
+
+		<ul>
+			<li><a href="/Companies.html">Компании</a></li>
+			<li><a href="/Requests.html">Запросы</a></li>
+			<li><a href="/Vacancies.html">Вакансии</a></li>
+			<li><a href="/Candidates.html">Кандидаты</a></li>
+		</ul>
+		<div class="hr"></div>
+		<ul>
+			<li data-bind="with: User"><a data-bind="text: Name, attr:{href:'/User.html?'+ID}"></a></li>
+			<li><a id="logout" href="#" data-bind="click: Logout">Выйти</a></li>
+		</ul>
+
+	</nav>
+
+	<!-- header -->
+
+		<div class="container body-content">
+			<div data-bind="with: PageViewModel">
+				<h2>VR API</h2>
+				<h5>Обращений (шт)</h5>
+				<div id="chart1"></div>
+				<h5>Ошибок 403</h5>
+				<div id="chart2"></div>
+				<h5>Ошибок 500</h5>
+				<div id="chart3"></div>
+				<h5>Среднее время ответа (мс)</h5>
+				<div id="chart4"></div>
+			</div>
+
+			<!-- footer -->
+
+	<footer>
+		&copy; 2018
+		<!--<div data-bind="text: ko.toJSON(app.ViewModel)"></div>-->
+	</footer>
+
+	<!-- footer -->
+
+		</div>
+	</div>
+
+
+	<!-- scripts -->
+
+	<script src="/Scripts/knockout-3.4.2.debug.js" type="text/javascript"></script>
+	<script src="/Scripts/app.js" type="text/javascript"></script>
+
+	<!-- scripts -->
+
+	<script src="/Scripts/Management.js" type="text/javascript"></script>
+	<script src="/Scripts/barChart.js" type="text/javascript"></script>
+
+	<!-- init -->
+
+	<script>
+		var init = function () {
+			app.ViewModel.PageViewModel = new PageViewModel();
+			ko.applyBindings(app.ViewModel, document.getElementById("broot"));
+			app.ViewModel.Init();
+			test.Init();
+		};
+
+		if (document.readyState !== 'loading')
+			init();
+		else
+			document.addEventListener('DOMContentLoaded', init);
+	</script>
+
+	<!-- init -->
+
+</body>
+</html>
