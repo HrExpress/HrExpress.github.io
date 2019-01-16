@@ -2,7 +2,7 @@
 
 app.config = app.config || {};
 //app.config.apiRoot = "http://localhost:1025/api/";
-app.config.apiRoot = "http://hr-express.azurewebsites.net/api/";
+app.config.apiRoot = "https://hr-express.azurewebsites.net/api/";
 
 // #region Urls
 
